@@ -1,3 +1,9 @@
+= Announcement
+
+The Ruby-Decimal package has been superseded by Flt:
+* Code: http://github.com/jgoizueta/flt/
+* Documentation: http://flt.rubyforge.org/
+
 = Introduction
 
 Decimal is a standards-compliant arbitrary precision decimal floating-point type for Ruby.
