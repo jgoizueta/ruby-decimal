@@ -4,6 +4,9 @@ The Ruby-Decimal package has been superseded by Flt:
 * Code: http://github.com/jgoizueta/flt/
 * Documentation: http://flt.rubyforge.org/
 
+Version 1.0.0 of this gem has been redefined to use Flt and setup
+an interface mostly compatible with the original Ruby-Decimal.
+
 = Introduction
 
 Decimal is a standards-compliant arbitrary precision decimal floating-point type for Ruby.

@@ -1,4 +1,8 @@
-$:.unshift File.dirname(__FILE__)
+require 'flt/dec_num'
 
-require 'decimal/support'
-require 'decimal/decimal'
+Decimal = Flt::DecNum
+DecimalSupport = Flt::Support
+
+def Decimal(*args)
+  Flt::DecNum[*args]
+end

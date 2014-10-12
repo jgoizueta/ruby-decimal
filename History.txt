@@ -29,3 +29,7 @@
   - After a local context, the global context was set to a copy of the original
     context, so any previously stored reference to it was now unbound.
   - Context#normalize was incorrect.
+
+== 1.0.0 2014-10-12
+
+* Reimplemented based on Flt

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/helper.rb'
+require File.expand_path(File.join(File.dirname(__FILE__),'helper.rb'))
 
 class TestDefineConversions < Test::Unit::TestCase
 
@@ -55,14 +55,7 @@ class TestDefineConversions < Test::Unit::TestCase
       end
     end
 
-    assert_raise(TypeError) { Decimal('0') == BigDecimal.new('0') }
-    assert_not_equal BigDecimal.new('0'), Decimal('0')
-    assert_not_equal BigDecimal.new('1.2345'), Decimal('1.2345')
-    assert_not_equal BigDecimal.new('-1.2345'), Decimal('-1.2345')
-    assert_not_equal BigDecimal.new('1.2345'), Decimal('0.0012345000E3')
-    assert_raise(TypeError) { BigDecimal.new('7')+Decimal('0.1') }
-    assert_raise(TypeError) { Decimal('7')+BigDecimal.new('0.1') }
-    assert_raise(TypeError) { Decimal(BigDecimal.new('1.1')) }
+    assert_raise(TypeError, RuntimeError) { Decimal('0') == BigDecimal.new('0') }
 
     ['0.1', '-0.1', '0.0', '1234567.1234567', '-1234567.1234567', '1.234E7', '1.234E-7'].each do |n|
       assert_raise(TypeError) { Decimal(n).convert_to(BigDecimal) }

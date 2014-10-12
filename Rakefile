@@ -1,35 +1,21 @@
-# Look in the tasks/setup.rb file for the various options that can be
-# configured in this Rakefile. The .rake files in the tasks directory
-# are where the options are used.
+require "bundler/gem_tasks"
 
-begin
-  require 'bones'
-  Bones.setup
-rescue LoadError
-  load 'tasks/setup.rb'
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
 end
 
-ensure_in_path 'lib'
-#require 'decimal'
-require 'decimal/version'
+require 'rdoc/task'
+Rake::RDocTask.new do |rdoc|
+  version = Decimal::DECIMAL_VERSION
 
-task :default => 'spec:run'
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "Decimal #{version}"
+  rdoc.main = "README.rdoc"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
 
-
-PROJ.name = 'ruby-decimal'
-PROJ.description = "Ruby Decimal Type"
-PROJ.authors = 'Javier Goizueta'
-PROJ.email = 'javier@goizueta.info'
-PROJ.version = DecimalSupport::VERSION::STRING
-PROJ.rubyforge.name = 'ruby-decimal'
-PROJ.url = "http://#{PROJ.rubyforge.name}.rubyforge.org"
-PROJ.rdoc.opts = [
-  "--main", "README.txt",
-  '--title', 'Ruby Decimal Documentation',
-  "--opname", "index.html",
-  "--line-numbers",
-  "--inline-source"
-  ]
-#PROJ.test.file = 'test/all_tests.rb'
-
-# EOF
+task default: :test
